@@ -46,10 +46,7 @@ const OrderScreen = ({ match, history }) => {
             script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
             script.async = true
             document.body.appendChild(script)
-            script.addEventListener('onload', () => {
-                setSdkReady(true)
-                console.log('done')
-            })
+
         }
         if (!order || successPay || successDeliver) {
             dispatch({ type: ORDER_PAY_RESET })
@@ -57,16 +54,19 @@ const OrderScreen = ({ match, history }) => {
             dispatch(getOrderDetails(orderId))
         } else if (!order.isPaid) {
             if (!window.paypal) {
-                console.log('probuje dodac skrypt')
-                addPayPalScript()
-            } else {
-                console.log('heheszek')
+                // dunno why but it's working that way
+                (async () => {
+                    await addPayPalScript()
+                    await setSdkReady(true)
+                })()
+            }
+            else {
                 setSdkReady(true)
             }
 
         }
 
-    }, [orderId, dispatch, successPay, order, successDeliver])
+    }, [orderId, dispatch, successPay, order, successDeliver, setSdkReady])
 
     if (!loading) {
         order.itemsPrice = (order.orderItems.reduce((acc, item) => acc + (item.price * item.qty), 0)).toFixed(2)
