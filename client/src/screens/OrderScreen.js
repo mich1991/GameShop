@@ -66,7 +66,7 @@ const OrderScreen = ({ match, history }) => {
 
         }
 
-    }, [orderId, dispatch, successPay, order, successDeliver, setSdkReady])
+    }, [orderId, dispatch, successPay, order, successDeliver, setSdkReady, history, userInfo])
 
     if (!loading) {
         order.itemsPrice = (order.orderItems.reduce((acc, item) => acc + (item.price * item.qty), 0)).toFixed(2)

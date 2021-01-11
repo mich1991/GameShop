@@ -30,12 +30,7 @@ const OrderListScreen = ({ history }) => {
         }
     }, [dispatch, history, userInfo, successDelete])
 
-    const deleteHandler = (id) => {
-        if (window.confirm('Are you sure?')) {
-            // dispatch(deleteUser(id))
-            console.log('delete')
-        }
-    }
+
 
     return (
         <>
