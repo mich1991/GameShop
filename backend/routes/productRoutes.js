@@ -1,5 +1,5 @@
 import express, { Router } from 'express'
-import { getProductById, getProducts, deleteProductById, updateProductById, createProduct } from '../controllers/productControllers.js'
+import { getProductById, getProducts, deleteProductById, updateProductById, createProduct, createProductReview } from '../controllers/productControllers.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
 
 const router = Router()
@@ -17,5 +17,6 @@ router.route('/:id')
     .delete(protect, admin, deleteProductById)
     .put(protect, admin, updateProductById)
 
+router.route('/:id/reviews').post(protect, createProductReview)
 
 export default router
