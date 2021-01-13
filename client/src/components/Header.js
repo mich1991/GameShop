@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { Route } from 'react-router-dom'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions'
+import SearchBox from './SearchBox'
+
 const Header = () => {
 
     const userLogin = useSelector(state => state.userLogin)
@@ -22,6 +25,8 @@ const Header = () => {
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
+                        {/* To get access to history and match props we need to use Route */}
+                        <Route render={({ history }) => <SearchBox history={history} />} />
                         <Nav className="ml-auto">
                             <LinkContainer to="/Cart">
                                 <Nav.Link > <i className="fas fa-shopping-cart"></i> Cart</Nav.Link>
