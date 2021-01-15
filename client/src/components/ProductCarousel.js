@@ -18,18 +18,17 @@ const ProductCarousel = () => {
     return loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
         <Carousel pause='hover' className='bg-dark text-center' >
             {products.map(product => (
-                <Carousel.Item key={product._id} interval={3000} style={{ maxHeight: 300 }} >
+                <Carousel.Item key={product._id} interval={3000}  >
                     <Link to={`/product/${product._id}`}>
-                        <Image src={product.image} alt={product.name} fluid style={{ maxHeight: 300 }} className='w-75' />
+                        <Image src={product.image} alt={product.name} fluid />
                         <Carousel.Caption className='carousel-caption'>
-                            <h2>{product.name}</h2>
-                            <h3>{product.price}€</h3>
+                            <h2>{product.name}({product.price}€)</h2>
                         </Carousel.Caption>
                     </Link>
                 </Carousel.Item>
             ))
             }
-        </Carousel >
+        </Carousel>
     )
 
 }

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listProductDetails, createReviewProduct } from '../actions/productActions'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
+import Meta from '../components/Meta'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
 const Product = ({ history, match }) => {
@@ -51,6 +52,7 @@ const Product = ({ history, match }) => {
 
     return (
         <>
+            <Meta title={`GameShop ${product.name}`} />
             <Link to='/' className='btn btn-warning my-3' >Go Back</Link>
             {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> :
                 <>
