@@ -31,3 +31,7 @@ main{
 .carousel a {
   margin: 0 auto
 }
+
+.card{
+  height: 480px;
+}
